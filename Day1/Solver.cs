@@ -25,23 +25,19 @@ namespace Day1
                 }
             }
 
-            throw new Exception("No solution found");
+            return (0, 0);
         }
 
         public (int, int, int) Solve2()
         {
             foreach (var input in _inputs)
             {
-                try
-                {
-                    var goalSum = 2020 - input;
-                    var (second, third) = Solve1(goalSum);
+                var goalSum = 2020 - input;
+                var (second, third) = Solve1(goalSum);
 
-                    return (input, second, third);
-                }
-                catch
-                {
-                }
+                if (second == 0 && third == 0) continue;
+
+                return (input, second, third);
             }
 
             throw new Exception("No solution found");
