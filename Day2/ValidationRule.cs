@@ -3,7 +3,7 @@
     public class ValidationRule
     {
         public char Letter { get; set; }
-        public int MinOccurrences { get; set; }
-        public int MaxOccurrences { get; set; }
+        public int Parameter1 { get; set; }
+        public int Parameter2 { get; set; }
     }
 }

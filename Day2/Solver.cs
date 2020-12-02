@@ -16,8 +16,12 @@ namespace Day2
 
         public int Solve1()
         {
+            return _inputs.Count(i => i.IsValidForPart1());
+        }
 
-            return _inputs.Count(i => i.IsValid());
+        public int Solve2()
+        {
+            return _inputs.Count(i => i.IsValidForPart2());
         }
 
         static List<InputLine> GetInputs()
@@ -39,8 +43,8 @@ namespace Day2
                 Password = lineSplit[1],
                 ValidationRule = new ValidationRule
                 {
-                    MinOccurrences = int.Parse(validationSplit[0]),
-                    MaxOccurrences = int.Parse(validationSplit[1]),
+                    Parameter1 = int.Parse(validationSplit[0]),
+                    Parameter2 = int.Parse(validationSplit[1]),
                     Letter = Convert.ToChar(validationSplit[2]),
                 }
             };
