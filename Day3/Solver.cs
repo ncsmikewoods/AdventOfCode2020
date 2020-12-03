@@ -44,20 +44,29 @@ namespace Day3
             return treesHit;
         }
 
-        // public (int, int, int) Solve2()
-        // {
-        //     foreach (var input in _inputs)
-        //     {
-        //         var goalSum = 2020 - input;
-        //         var (second, third) = Solve1(goalSum);
-        //
-        //         if (second == 0 && third == 0) continue;
-        //
-        //         return (input, second, third);
-        //     }
-        //
-        //     throw new Exception("No solution found");
-        // }
+        public double Solve2()
+        {
+            double treesHit1 = Solve1(1, 1);
+            double treesHit2 = Solve1(3, 1);
+            double treesHit3 = Solve1(5, 1);
+            double treesHit4 = Solve1(7, 1);
+            double treesHit5 = Solve1(1, 2);
+            //
+            // Console.WriteLine($"Trees hit with 1, 1: {treesHit1}");
+            // Console.WriteLine($"Trees hit with 3, 1: {treesHit2}");
+            // Console.WriteLine($"Trees hit with 5, 1: {treesHit3}");
+            // Console.WriteLine($"Trees hit with 7, 1: {treesHit4}");
+            // Console.WriteLine($"Trees hit with 1, 2: {treesHit5}");
+
+            double total = 1;
+            total *= treesHit1;
+            total *= treesHit2;
+            total *= treesHit3;
+            total *= treesHit4;
+            total *= treesHit5;
+
+            return total;
+        }
 
         static void BuildMap()
         {

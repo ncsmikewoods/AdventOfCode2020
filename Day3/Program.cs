@@ -9,7 +9,7 @@ namespace Day3
             var solver = new Solver();
 
             Part1(solver);
-            // Part2(solver);
+            Part2(solver);
 
             Console.ReadLine();
         }
@@ -27,17 +27,18 @@ namespace Day3
             Console.WriteLine("");
         }
 
-        // static void Part2(Solver solver)
-        // {
-        //     Console.WriteLine("Solving Part 2...");
-        //     var start = DateTime.Now;
-        //
-        //     var (a, b, c) = solver.Solve2();
-        //     var duration = DateTime.Now - start;
-        //
-        //     Console.WriteLine($"Valid inputs: {a} and {b} and {c} and they sum up to {a + b + c}");
-        //     Console.WriteLine($"Solution 2: {a * b * c}");
-        //     Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
-        // }
+        static void Part2(Solver solver)
+        {
+            Console.WriteLine("Solving Part 2...");
+            var start = DateTime.Now;
+
+            var treesHit = solver.Solve2();
+            var duration = DateTime.Now - start;
+
+            Console.Write($"Solution 2: ");
+            Console.WriteLine(treesHit);
+            Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
+            Console.WriteLine("");
+        }
     }
 }
