@@ -8,7 +8,7 @@ namespace Day2
         {
             var solver = new Solver();
 
-            // Part1(solver);
+            Part1(solver);
             Part2(solver);
 
             Console.ReadLine();
@@ -16,6 +16,7 @@ namespace Day2
 
         static void Part1(Solver solver)
         {
+            Console.WriteLine("Solving Part 1...");
             var start = DateTime.Now;
 
             var validPasswords = solver.Solve1();
@@ -28,6 +29,7 @@ namespace Day2
 
         static void Part2(Solver solver)
         {
+            Console.WriteLine("Solving Part 2...");
             var start = DateTime.Now;
 
             var validPasswords = solver.Solve2();

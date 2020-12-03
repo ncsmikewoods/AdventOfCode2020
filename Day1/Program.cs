@@ -17,6 +17,7 @@ namespace Day1
 
         static void Part1(Solver solver)
         {
+            Console.WriteLine("Solving Part 1...");
             var start = DateTime.Now;
 
             var (a, b) = solver.Solve1();
@@ -30,6 +31,7 @@ namespace Day1
 
         static void Part2(Solver solver)
         {
+            Console.WriteLine("Solving Part 2...");
             var start = DateTime.Now;
 
             var (a, b, c) = solver.Solve2();
