@@ -16,13 +16,13 @@ namespace Day4
 
         public int Solve1()
         {
-            return _passports.Count(p => p.IsValid());
+            return _passports.Count(p => p.IsValidPart1());
         }
 
-        // public double Solve2()
-        // {
-        //     
-        // }
+        public int Solve2()
+        {
+            return _passports.Count(p => p.IsValidPart2());
+        }
 
         static void GetInputs()
         {

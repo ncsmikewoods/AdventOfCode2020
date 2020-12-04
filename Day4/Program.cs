@@ -29,16 +29,15 @@ namespace Day4
 
         static void Part2(Solver solver)
         {
-            // Console.WriteLine("Solving Part 2...");
-            // var start = DateTime.Now;
-            //
-            // var treesHit = solver.Solve2();
-            // var duration = DateTime.Now - start;
-            //
-            // Console.Write($"Solution 2: ");
-            // Console.WriteLine(treesHit);
-            // Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
-            // Console.WriteLine("");
+            Console.WriteLine("Solving Part 2...");
+            var start = DateTime.Now;
+
+            var validPassports = solver.Solve2();
+            var duration = DateTime.Now - start;
+
+            Console.WriteLine($"Solution 2: {validPassports}");
+            Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
+            Console.WriteLine("");
         }
     }
 }
