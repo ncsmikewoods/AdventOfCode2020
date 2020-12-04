@@ -44,30 +44,10 @@ namespace Day4
             foreach (var field in fields)
             {
                 var fieldTokens = field.Split(":");
-                passport.Fields.Add(fieldTokens[0], fieldTokens[1]);
+                passport.Fields.Add(new PassportField(fieldTokens[0], fieldTokens[1]));
             }
 
             return passport;
-        }
-    }
-
-    public class Passport
-    {
-        public Dictionary<string, string> Fields { get; set; } = new Dictionary<string, string>();
-
-        public bool IsValid()
-        {
-            // Console.WriteLine("Testing passport");
-            var requiredFields = new List<string>{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"};
-
-            var missingFields = requiredFields.Except(Fields.Keys).ToList();
-
-            if (missingFields.Any())
-            {
-                // Console.WriteLine("Invalid passport.  Missing fields: " + string.Join(", ", missingFields));
-            }
-
-            return !missingFields.Any();
         }
     }
 }
