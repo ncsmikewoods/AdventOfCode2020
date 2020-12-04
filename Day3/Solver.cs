@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Day3
 {
@@ -16,7 +14,7 @@ namespace Day3
             BuildMap();
         }
 
-        public int Solve1(int movesRight = 3, int movesDown = 1)
+        public double Solve1(int movesRight = 3, int movesDown = 1)
         {
             var rowIndex = 0;
             var colIndex = 0;
@@ -46,11 +44,11 @@ namespace Day3
 
         public double Solve2()
         {
-            double treesHit1 = Solve1(1, 1);
-            double treesHit2 = Solve1(3, 1);
-            double treesHit3 = Solve1(5, 1);
-            double treesHit4 = Solve1(7, 1);
-            double treesHit5 = Solve1(1, 2);
+            var treesHit1 = Solve1(1, 1);
+            var treesHit2 = Solve1(3, 1);
+            var treesHit3 = Solve1(5, 1);
+            var treesHit4 = Solve1(7, 1);
+            var treesHit5 = Solve1(1, 2);
             //
             // Console.WriteLine($"Trees hit with 1, 1: {treesHit1}");
             // Console.WriteLine($"Trees hit with 3, 1: {treesHit2}");
@@ -58,7 +56,7 @@ namespace Day3
             // Console.WriteLine($"Trees hit with 7, 1: {treesHit4}");
             // Console.WriteLine($"Trees hit with 1, 2: {treesHit5}");
 
-            double total = 1;
+            var total = 1d;
             total *= treesHit1;
             total *= treesHit2;
             total *= treesHit3;
