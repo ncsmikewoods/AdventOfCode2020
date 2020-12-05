@@ -14,9 +14,9 @@ namespace Day5
             GetInputs();
         }
 
-        public int Solve1()
+        public List<int> Solve1()
         {
-            var maxSeatId = 0;
+            var seatIds = new List<int>();
 
             foreach (var input in _inputs)
             {
@@ -27,10 +27,10 @@ namespace Day5
                 var columnNumber = CalculatePosition('L', columns, 0, 7);
 
                 var seatId = (rowNumber * 8) + columnNumber;
-                if (seatId > maxSeatId) maxSeatId = seatId;
+                seatIds.Add(seatId);
             }
 
-            return maxSeatId;
+            return seatIds;
         }
 
         int CalculatePosition(char lowerMoveChar, string instructions, int rangeMin, int rangeMax)
@@ -49,9 +49,15 @@ namespace Day5
             return CalculatePosition(lowerMoveChar, tail, rangeMin + (rangeSize / 2), rangeMax);
         }
 
-        public double Solve2()
+        public int Solve2()
         {
-            return 0d;
+            var seatIds = Solve1();
+            seatIds.Sort();
+
+            var validSeats = Enumerable.Range(seatIds[0], seatIds.Count);
+            var missingSeats = validSeats.Except(seatIds);
+
+            return missingSeats.First();
         }
 
         static void GetInputs()

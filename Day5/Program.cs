@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Day5
 {
@@ -9,7 +10,7 @@ namespace Day5
             var solver = new Solver();
 
             Part1(solver);
-            // Part2(solver);
+            Part2(solver);
 
             Console.ReadLine();
         }
@@ -19,26 +20,25 @@ namespace Day5
             Console.WriteLine("Solving Part 1...");
             var start = DateTime.Now;
 
-            var treesHit = solver.Solve1();
+            var seatIds = solver.Solve1();
             var duration = DateTime.Now - start;
 
-            Console.WriteLine($"Solution 1: {treesHit}");
+            Console.WriteLine($"Solution 1: {seatIds.Max()}");
             Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
             Console.WriteLine("");
         }
 
-        // static void Part2(Solver solver)
-        // {
-        //     Console.WriteLine("Solving Part 2...");
-        //     var start = DateTime.Now;
-        //
-        //     var treesHit = solver.Solve2();
-        //     var duration = DateTime.Now - start;
-        //
-        //     Console.Write($"Solution 2: ");
-        //     Console.WriteLine(treesHit);
-        //     Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
-        //     Console.WriteLine("");
-        // }
+        static void Part2(Solver solver)
+        {
+            Console.WriteLine("Solving Part 2...");
+            var start = DateTime.Now;
+        
+            var seatId = solver.Solve2();
+            var duration = DateTime.Now - start;
+            
+            Console.WriteLine($"Solution 2: {seatId}");
+            Console.WriteLine($"Duration: {Math.Round(duration.TotalMilliseconds)}ms");
+            Console.WriteLine("");
+        }
     }
 }
