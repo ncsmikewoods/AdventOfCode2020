@@ -21,7 +21,7 @@ namespace Day6
 
         public int Solve2()
         {
-            return 1;
+            return _groups.Sum(g => g.GetCommonCharacters());
         }
 
         static void GetInputs()
