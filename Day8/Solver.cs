@@ -15,19 +15,50 @@ namespace Day8
 
         public int Solve1()
         {
+            var (isSuccessful, accumulator) = ExecuteProgram(_inputs);
+
+            if (isSuccessful) Console.WriteLine("Program contains no infinite loops");
+            return accumulator;
+        }
+
+        public int Solve2()
+        {
+            for (var i = _inputs.Length - 1; i >= 0; i--)
+            {
+                var lineOfCode = _inputs[i];
+
+                if (lineOfCode.Instruction.Equals("acc")) continue;
+
+                var copy = CopyProgram(_inputs);
+                copy[i] = SwapInstruction(copy[i]);
+                var (isSuccessful, accumulator) = ExecuteProgram(copy);
+
+                if (isSuccessful) return accumulator;
+            }
+
+            Console.WriteLine("There is no way to fix this code.");
+            return 1;
+        }
+
+        static (bool, int) ExecuteProgram(LineOfCode[] code)
+        {
             var executedLines = new List<int>();
             var cursorPosition = 0;
             var accumulator = 0;
 
-            while (true)
+            while (cursorPosition < code.Length)
             {
-                if (executedLines.Contains(cursorPosition)) break;
+                if (executedLines.Contains(cursorPosition))
+                {
+                    return (false, accumulator);
+                }
+
                 executedLines.Add(cursorPosition);
 
-                var lineOfCode = _inputs[cursorPosition];
+                var lineOfCode = code[cursorPosition];
                 switch (lineOfCode.Instruction)
                 {
-                    case "nop": 
+                    case "nop":
                         cursorPosition++;
                         break;
 
@@ -42,19 +73,26 @@ namespace Day8
                 }
             }
 
-            return accumulator;
+            return (true, accumulator);
         }
 
-        // public int Solve2()
-        // {
-        //     var seatIds = Solve1();
-        //     seatIds.Sort();
-        //
-        //     var validSeats = Enumerable.Range(seatIds[0], seatIds.Count);
-        //     var missingSeats = validSeats.Except(seatIds);
-        //
-        //     return missingSeats.First();
-        // }
+        static LineOfCode SwapInstruction(LineOfCode lineOfCode)
+        {
+            return new LineOfCode
+            {
+                LineNumber = lineOfCode.LineNumber,
+                Value = lineOfCode.Value,
+                Instruction = lineOfCode.Instruction.Equals("nop") ? "jmp" : "nop"
+            };
+        }
+
+        static LineOfCode[] CopyProgram(LineOfCode[] code)
+        {
+            var copy = new LineOfCode[code.Length];
+            Array.Copy(code, copy, code.Length);
+
+            return copy;
+        }
 
         static void GetInputs()
         {
@@ -76,12 +114,5 @@ namespace Day8
                 };
             }
         }
-    }
-
-    public class LineOfCode
-    {
-        public int LineNumber { get; set; } 
-        public string Instruction { get; set; }
-        public int Value { get; set; }
     }
 }
