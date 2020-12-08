@@ -57,10 +57,15 @@ namespace Day7
 
             foreach (var bag in _bagDefinitions)
             {
-                var childBags = _bagDefinitions.Where(b => bag.ChildrenNames.Contains(b.Name)).ToList();
-                bag.Children = childBags;
+                // set bags that this one can contain
+                foreach (var (childBagName, childBagCount) in bag.ParsedChildren)
+                {
+                    var matchingBagDefinition = _bagDefinitions.Find(b => b.Name.Equals(childBagName));
+                    bag.Children.Add(matchingBagDefinition, childBagCount);
+                }
 
-                foreach (var child in childBags)
+                // go into those bags and set this one as a parent
+                foreach (var child in bag.Children.Keys)
                 {
                     child.Parents.Add(bag);
                 }
@@ -80,10 +85,13 @@ namespace Day7
 
             for (var i = 1; i < definitionTokens.Length; i++)
             {
-                var bagToken = definitionTokens[i].Trim();
-                var bagName = string.Join(" ", bagToken.Split(" ").Skip(1));
+                var bagString = definitionTokens[i].Trim();
+                var bagTokens = bagString.Split(" ");
 
-                bag.ChildrenNames.Add(bagName);
+                var bagCount = int.Parse(bagTokens.First());
+                var bagName = string.Join(" ", bagTokens.Skip(1));
+
+                bag.ParsedChildren.Add(bagName, bagCount);
             }
 
             return bag;
@@ -93,8 +101,8 @@ namespace Day7
     public class Bag
     {
         public string Name { get; set; }
-        public List<string> ChildrenNames { get; set; } = new List<string>();
-        public List<Bag> Children { get; set; } = new List<Bag>();
+        public Dictionary<string, int> ParsedChildren { get; set; } = new Dictionary<string, int>();
+        public Dictionary<Bag, int> Children { get; set; } = new Dictionary<Bag, int>();
         public List<Bag> Parents { get; set; } = new List<Bag>();
     }
 }
