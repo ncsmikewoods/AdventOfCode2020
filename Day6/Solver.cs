@@ -7,7 +7,7 @@ namespace Day6
 {
     public class Solver
     {
-        static List<HashSet<char>> _groups;
+        static List<GroupAnswers> _groups;
 
         public Solver()
         {
@@ -16,7 +16,7 @@ namespace Day6
 
         public int Solve1()
         {
-            return _groups.Sum(g => g.Count);
+            return _groups.Sum(g => g.CharCounts.Keys.Distinct().Count());
         }
 
         public int Solve2()
@@ -32,28 +32,32 @@ namespace Day6
 
             Console.WriteLine($"Read {groupsRaw.Length} groups");
 
-            _groups = new List<HashSet<char>>();
+            _groups = new List<GroupAnswers>();
             foreach (var groupRaw in groupsRaw)
             {
                 _groups.Add(ParseGroup(groupRaw));
             }
         }
 
-        static HashSet<char> ParseGroup(string group)
+        static GroupAnswers ParseGroup(string group)
         {
             var lines = group.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
 
-            var letters = new HashSet<char>();
+            var charCounts = new Dictionary<char, int>();
 
             foreach (var line in lines)
             {
                 foreach (var letter in line)
                 {
-                    letters.Add(letter);
+                    charCounts[letter] = charCounts.ContainsKey(letter) ? charCounts[letter] + 1 : 1;
                 }
             }
 
-            return letters;
+            return new GroupAnswers
+            {
+                GroupSize = lines.Length,
+                CharCounts = charCounts
+            };
         }
     }
 }
