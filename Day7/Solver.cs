@@ -37,16 +37,13 @@ namespace Day7
             }
         }
 
-        // public int Solve2()
-        // {
-        //     var seatIds = Solve1();
-        //     seatIds.Sort();
-        //
-        //     var validSeats = Enumerable.Range(seatIds[0], seatIds.Count);
-        //     var missingSeats = validSeats.Except(seatIds);
-        //
-        //     return missingSeats.First();
-        // }
+        public int Solve2()
+        {
+            var shinyBag = _bagDefinitions.Single(b => b.Name.Equals("shiny gold"));
+
+            var childBags = shinyBag.CountBags(false);
+            return childBags;
+        }
 
         static void GetInputs()
         {
@@ -96,13 +93,5 @@ namespace Day7
 
             return bag;
         }
-    }
-
-    public class Bag
-    {
-        public string Name { get; set; }
-        public Dictionary<string, int> ParsedChildren { get; set; } = new Dictionary<string, int>();
-        public Dictionary<Bag, int> Children { get; set; } = new Dictionary<Bag, int>();
-        public List<Bag> Parents { get; set; } = new List<Bag>();
     }
 }
